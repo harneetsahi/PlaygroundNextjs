@@ -2,10 +2,12 @@
 import Link from "next/link";
 import axios from "axios";
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const route = useRouter();
 
   async function handleSignup() {
     const username = usernameRef.current?.value;
@@ -15,6 +17,8 @@ export default function Login() {
       username,
       password,
     });
+
+    route.push("/login");
   }
 
   return (
