@@ -13,6 +13,8 @@ export default function Login() {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
 
+    console.log(username, password);
+
     await axios.post("http://localhost:3000/api/v1/signup", {
       username,
       password,
@@ -31,6 +33,7 @@ export default function Login() {
             className="border-1 border-gray-400 py-2 px-4 rounded-lg"
             type="text"
             placeholder="username"
+            ref={usernameRef}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -39,6 +42,7 @@ export default function Login() {
             className="border-1 border-gray-400 py-2 px-4 rounded-lg"
             type="password"
             placeholder="password"
+            ref={passwordRef}
           />
         </div>
         <button
