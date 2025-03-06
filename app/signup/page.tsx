@@ -13,8 +13,6 @@ export default function Login() {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
 
-    console.log(username, password);
-
     await axios.post("http://localhost:3000/api/v1/signup", {
       username,
       password,

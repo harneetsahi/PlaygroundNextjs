@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-
-const prismaClient = new PrismaClient();
+import prisma from "../../../lib/db";
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
 
   /// store data in db
   try {
-    await prismaClient.user.create({
+    await prisma.user.create({
       data: {
         username: data.username,
         password: data.password,
@@ -18,7 +17,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       message: "You have signed up",
     });
-    
   } catch (error) {
     return NextResponse.json({
       message: "Error creating user",
