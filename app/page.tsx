@@ -1,11 +1,11 @@
-import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 
 export default async function Home() {
-  const session = useSession();
+  const session = await getServerSession();
 
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center">
-      Home
+      {JSON.stringify(session)}
     </div>
   );
 }
