@@ -2,19 +2,27 @@
 import Link from "next/link";
 import axios from "axios";
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const route = useRouter();
 
   async function handleLogin() {
     const username = usernameRef.current?.value;
     const password = passwordRef.current?.value;
 
+    if (!username || !password) {
+      return;
+    }
+
     await axios.post("http://localhost:3000/api/v1/login", {
       username,
       password,
     });
+
+    route.push("/profile");
   }
 
   return (
